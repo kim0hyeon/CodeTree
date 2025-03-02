@@ -5,25 +5,29 @@ using namespace std;
 int main() {
     int n;
     cin >> n;
-    int a[n];
+    int arr[n];
 
     for (int i = 0; i < n; i++) {
-        cin >> a[i];
+        cin >> arr[i];
     }
 
     int tmp;
-    for (int i = 0; i < n-1; i++){
-        for (int j = 0; j < n-i-1; j++){
-            if (a[j] > a[j+1]){
-                tmp = a[j];
-                a[j] = a[j+1];
-                a[j+1] = tmp;
+    bool sorted;
+    
+    do {
+        sorted = true;
+        for (int i = 0; i < n-1; i++){
+            if (arr[i] > arr[i+1]){
+                tmp = arr[i];
+                arr[i] = arr[i+1];
+                arr[i+1] = tmp;
+                sorted = false;
             }
         }
-    }
+    } while (!sorted);
 
     for (int i = 0; i < n; i++){
-        cout << a[i] << " ";
+        cout << arr[i] << " ";
     }
 
     return 0;
