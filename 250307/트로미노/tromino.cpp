@@ -5,7 +5,7 @@ using namespace std;
 
 
 int check_rightangle(vector<vector<int>> &grid, int x, int y){
-    if (grid.size() < x+2 || grid.size() < y+2){
+    if (grid.size() < x+2 || grid[0].size() < y+2){
         return 0;
     }
 
