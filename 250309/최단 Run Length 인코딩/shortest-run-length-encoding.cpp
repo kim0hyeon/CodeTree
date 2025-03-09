@@ -20,7 +20,10 @@ int check(string s){
     for (int i = 0; i < s.length()-1; i++){
         if (s[i] != s[i+1]) total += 2;
     }
-    if (total == 0) return 3;
+    if (total == 0){
+        if (s.length() < 10) return 2;
+        else return 3;
+    }
     return total;
 }
 
