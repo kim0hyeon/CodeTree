@@ -1,38 +1,82 @@
 #include <iostream>
 #include <vector>
-using namespace std;
-typedef long long ll;
 
-int main(){
-    int n;
-    cin >> n;
-    
-    // dp[i][last]: 길이 i인 아름다운 수 중 마지막 블록의 숫자가 last인 경우의 수.
-    // last == 0은 아직 아무 블록도 선택되지 않은 초기 상태.
-    vector<vector<ll>> dp(n+1, vector<ll>(5, 0));
-    dp[0][0] = 1;
-    
-    // i: 현재까지 구성한 자리수
-    for(int i = 0; i <= n; i++){
-        // last: 마지막 블록의 숫자 (0이면 아직 없음)
-        for(int last = 0; last < 5; last++){
-            if(dp[i][last] == 0) continue;
-            // 다음 블록의 숫자는 1~4 중 last와 달라야 함.
-            for(int d = 1; d <= 4; d++){
-                if(last == d) continue;
-                // d에 대해 블록의 길이는 d, 2*d, 3*d, ...여야 함.
-                for(int k = 1; i + k * d <= n; k++){
-                    dp[i + k * d][d] += dp[i][last];
-                }
+using namespace std;
+
+
+bool upper(vector<int> &v){
+    int idx = 0;
+    while (v[idx] == 5){
+        v[idx] = 1;
+        idx++;
+        if (idx == v.size()) return false;
+        v[idx]++;
+    }
+    return true;
+}
+
+int check(vector<int> &v){
+    int two = 0, three = 0, four = 0;
+    bool flag = true;
+
+    for (int num : v){
+        if (num == 1){
+            if ((two > 0 && two < 2) || (three > 0 && three < 3) || (four > 0 && four < 4)){
+                flag = false;
+                break;
             }
+        } else if (num == 2){
+            if ((three > 0 && three < 3) || (four > 0 && four < 4)){
+                flag = false;
+                break;
+            }
+            two = (two+1) % 2;
+        } else if (num == 3){
+            if ((two > 0 && two < 2) || (four > 0 && four < 4)){
+                flag = false;
+                break;
+            }
+            three = (three+1) % 3;
+        } else{
+            if ((two > 0 && two < 2) || (three > 0 && three < 3)){
+                flag = false;
+                break;
+            }
+            four = (four+1) % 4;
         }
     }
-    
-    ll answer = 0;
-    for(int d = 1; d <= 4; d++){
-        answer += dp[n][d];
+
+    if (two > 0 || three > 0 || four > 0) flag = false;
+
+    if (!flag) return 0;
+    return 1;
+}
+
+int main() {
+    int n;
+    cin >> n;
+
+    vector<int> v(n, 1);
+
+    int answer = 0;
+    bool flag = true;
+
+    while (flag){
+        for (int j = 0; j < 4; j++){
+            answer += check(v);
+            v[0]++;
+
+            if (j == 3){
+                if(!upper(v)){
+                    flag = false;
+                    break;
+                }
+            }
+            
+        }
     }
-    
-    cout << answer << "\n";
+
+    cout << answer;
+
     return 0;
 }
