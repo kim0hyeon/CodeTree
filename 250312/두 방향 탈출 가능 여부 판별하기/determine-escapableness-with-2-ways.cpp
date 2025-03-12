@@ -12,11 +12,12 @@ bool exist = false;
 void DFS_exit(int x, int y){
     if (x == n && y == m)
         exist = true;
-
-    if (x < n && grid[x+1][y] == 1){  // x가 범위를 벗어나지 않고 다음 행이 진입 가능할 때
+    
+    // 수행시간을 고려해 만약 exist가 발견되었다면 더 이상 함수 진행할 필요 없음!
+    if (x < n && grid[x+1][y] == 1 && !exist){  // x가 범위를 벗어나지 않고 다음 행이 진입 가능할 때
         DFS_exit(x+1, y);
     }
-    if (y < m && grid[x][y+1] == 1){  // y가 범위를 벗어나지 않고 다음 행이 진입 가능할 때
+    if (y < m && grid[x][y+1] == 1 && !exist){  // y가 범위를 벗어나지 않고 다음 행이 진입 가능할 때
         DFS_exit(x, y+1);
     }
 }
