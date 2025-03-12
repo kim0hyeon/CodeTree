@@ -3,39 +3,32 @@
 
 using namespace std;
 
+
 int n, m;
 vector<vector<int>> grid;
-vector<vector<int>> memo;  // -1: 아직 계산하지 않음, 0: 도착 불가능, 1: 도착 가능
+vector<vector<bool>> visited;
+bool exist = false;
 
-bool DFS_exit(int x, int y) {
-    // 목적지에 도착하면 true 리턴
-    if (x == n && y == m)
-        return true;
+void DFS_exit(int x, int y){
+    if (x == n && y == m) exist = true;
+
+    // 이미 확인한 위치면 종료
+    if (visited[x][y]) return;
+    else visited[x][y] = true;
     
-    // 이미 계산한 경우 저장된 값을 리턴
-    if (memo[x][y] != -1)
-        return memo[x][y];
-    
-    bool canReach = false;
-    
-    // 아래쪽으로 이동 가능한 경우
-    if (x < n && grid[x+1][y] == 1) {
-        canReach = DFS_exit(x+1, y);
+    // 수행시간을 고려해 만약 exist가 발견되었다면 더 이상 함수 진행할 필요 없음!
+    if (x < n && grid[x+1][y] == 1 && !exist){  // x가 범위를 벗어나지 않고 다음 행이 진입 가능할 때
+        DFS_exit(x+1, y);
     }
-    
-    // 만약 아래쪽에서 목적지에 도달하지 못하면 오른쪽으로 이동 시도
-    if (!canReach && y < m && grid[x][y+1] == 1) {
-        canReach = DFS_exit(x, y+1);
+    if (y < m && grid[x][y+1] == 1 && !exist){  // y가 범위를 벗어나지 않고 다음 행이 진입 가능할 때
+        DFS_exit(x, y+1);
     }
-    
-    memo[x][y] = canReach;  // 결과 저장
-    return canReach;
 }
 
 int main(){
     cin >> n >> m;
     grid = vector<vector<int>>(n+1, vector<int>(m+1));
-    memo = vector<vector<int>>(n+1, vector<int>(m+1, -1)); // -1로 초기화
+    visited = vector<vector<bool>>(n+1, vector<bool>(m+1, false));
 
     for (int i = 1; i <= n; i++){
         for (int j = 1; j <= m; j++){
@@ -43,7 +36,10 @@ int main(){
         }
     }
 
-    cout << (DFS_exit(1, 1) ? 1 : 0);
+    DFS_exit(1, 1);
+
+    if (exist) cout << 1;
+    else cout << 0;
 
     return 0;
 }
