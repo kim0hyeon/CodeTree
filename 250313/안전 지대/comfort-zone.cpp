@@ -34,23 +34,26 @@ int main(){
     grid = vector<vector<int>>(n, vector<int>(m));
     visited = vector<vector<bool>>(n, vector<bool>(m, false));  // 방문의 기본값은 false
 
+    int high = 0;
     for (int i = 0; i < n; i++){
         for (int j = 0; j < m; j++){
             cin >> grid[i][j];
+            high = max(high, grid[i][j]);
         }
     }
 
+    // 초기값 설정
     int max_val = 0;
-    int max_height;
+    int max_height = 1;
 
-    for (int k = 1; k < 100; k++){
+    for (int k = 1; k < high; k++){
         cnt = 0;
         height = k;
         for (int i = 0; i < n; i++){
             for (int j = 0; j < m; j++){
                 if (grid[i][j] > height && !visited[i][j]){  // 빗물보다 높이가 높고 아직 방문한 적이 없는 경우
-                    cnt++;  // 마을 하나 발견!
-                    DFS_search(i, j);  // 해당 집과 인접한 집들 모두 제거
+                    cnt++;  // 집 발견!
+                    DFS_search(i, j);  // 해당 집과 인접한 집들 모두 방문 표시
                 }
             }
         }
