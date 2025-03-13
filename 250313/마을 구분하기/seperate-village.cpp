@@ -15,17 +15,16 @@ void DFS_search(int x, int y){
     cnt++;  // 집 하나 확인했으니 count++
     checked[x][y] = true;  // 방문했으니까 1로 변경
 
-    if (x-1 >= 0 && grid[x-1][y] == 1 && !checked[x-1][y]){
-        DFS_search(x-1, y);
-    }
-    if (y-1 >= 0 && grid[x][y-1] == 1 && !checked[x][y-1]){
-        DFS_search(x, y-1);
-    }
-    if (x+1 < n && grid[x+1][y] == 1 && !checked[x+1][y]){
-        DFS_search(x+1, y);
-    }
-    if (y+1 < n && grid[x][y+1] == 1 && !checked[x][y+1]){
-        DFS_search(x, y+1);
+    int dx[] = {-1,1,0,0};
+    int dy[] = {0,0,1,-1};
+
+    for (int i = 0; i < 4; i++){
+        int tx = x + dx[i];
+        int ty = y + dy[i];
+        if (tx >= 0 && tx < n && ty >= 0 && ty < n){
+            if (grid[tx][ty] == 1 && !checked[tx][ty])
+                DFS_search(tx, ty);
+        }
     }
 }
 
