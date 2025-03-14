@@ -14,6 +14,7 @@ pair<int, int> min_position;
 // 시작위치에서 전체 탐색 진행
 // 시작 숫자보다 작으면서 가장 큰 녀석을 계속 체크
 // 만약 이전 숫자와 같다면 행과 열 비교 행이 작은 녀석을 고르고 행이 같다면 열이 작은 녀석을 골라야 함
+// 시작하자마자 아무데도 움직일 수 없는 경우도 생각해야 한다. 그럼 min_position에 값이 안 들어가게 되는데 
 void BFS(){
     int max_num = 0;
 
@@ -22,11 +23,11 @@ void BFS(){
         q.pop();
         int x = current.first, y = current.second;
 
-        if (grid[x][y] > max_num && grid[x][y] != start_num){
+        if (grid[x][y] > max_num && grid[x][y] < start_num){
             max_num = grid[x][y];
             min_position = make_pair(x, y);
         } 
-        else if (grid[x][y] == max_num){
+        else if (grid[x][y] == max_num && grid[x][y] < start_num){
             if (min_position.first > x){
                 min_position = make_pair(x, y);
             }
@@ -74,13 +75,13 @@ int main(){
     start_num = grid[x][y];
     q.push(make_pair(x, y));
     visited[x][y] = true;
+    min_position = make_pair(x, y);  // 시작하자마자 끝날 경우도 생각해서 min_position에 값을 넣어준다.
 
 
     for (int i = 0; i < k; i++)
         BFS();
 
-    cout << min_position.first << " " << min_position.second;
-
+    cout << min_position.first << " " << min_position.second << endl;
     return 0;
 }
 
