@@ -52,11 +52,11 @@ int main(){
                 q.push(make_pair(i, j));
                 visited[i][j] = true;
                 answer[i][j] = 0;
-                BFS();
-                visited = vector<vector<bool>>(n+1, vector<bool>(n+1, false));
             }
         }
     }
+
+    BFS();
 
     for (int i = 1; i <= n; i++){
         for (int j = 1; j <= n; j++){
