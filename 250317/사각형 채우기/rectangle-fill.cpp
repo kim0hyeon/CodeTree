@@ -15,7 +15,7 @@ int main(){
     grid[2] = 2;
 
     for (int i = 3; i <= n; i++){
-        grid[i] = grid[i-1] + grid[i-2];
+        grid[i] = (grid[i-1] + grid[i-2]) % 10007;
     }
 
     cout << grid[n];
