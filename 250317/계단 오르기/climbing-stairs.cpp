@@ -14,7 +14,7 @@ int main(){
     step[3] = 1;
 
     for (int i = 4; i <= n; i++){
-        step[i] = step[i-2] + step[i-3];
+        step[i] = (step[i-2] + step[i-3]) % 10007;
     }
 
     cout << step[n];
