@@ -1,34 +1,32 @@
 #include <iostream>
+
+#define MAX_N 1000
+#define MOD 1000000007
+
 using namespace std;
 
-long long MOD = 1000000007;
+// 변수 선언
+int n;
 
-int main(){
-    int n;
+long long dp[MAX_N + 1];
+
+int main() {
+    // 입력:
     cin >> n;
 
-    // n이 0 또는 1인 경우를 미리 처리
-    if(n == 0) {
-        cout << 1; 
-        return 0;
+    // 초기 조건 설정
+    dp[0] = 1;
+    dp[1] = 2;
+
+    // 점화식에 따라 dp값 채우기
+    // dp[i] = dp[i - 1] * 2 + dp[i - 2] * 3 +
+    //         (dp[i - 3] + dp[i - 4] + dp[i - 5] + ... dp[0]) * 2
+    for(int i = 2; i <= n; i++) {
+        dp[i] = (dp[i - 1] * 2 + dp[i - 2] * 3) % MOD;
+        for(int j = i - 3; j >= 0; j--)
+            dp[i] = (dp[i] + dp[j] * 2) % MOD;
     }
-    if(n == 1) {
-        cout << 2; 
-        return 0;
-    }
-
-    long long arr[n+1];
-    arr[0] = 1; // 2x0 보드: 빈 타일링 1가지
-    arr[1] = 2; // 2x1 보드: 2가지 방법
-    arr[2] = 7; // 2x2 보드: 7가지 방법 (문제에서 주어진 값)
-    arr[3] = 22;
-
-    for (int i = 4; i <= n; i++){
-        arr[i] = ((arr[i-1] * 2 + arr[i-2] * 3 + arr[i-3] * 2 + 2*arr[i-4]) % MOD + MOD) % MOD;
-
-    }
-
-    cout << arr[n];
-
+    
+    cout << dp[n];
     return 0;
 }
