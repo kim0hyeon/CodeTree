@@ -24,7 +24,7 @@ int main(){
     arr[3] = 22;
 
     for (int i = 4; i <= n; i++){
-        arr[i] = ((arr[i-1] * 2 + arr[i-2] * 3 + arr[i-3] * 2 - arr[i-4]) % MOD + MOD) % MOD;
+        arr[i] = ((arr[i-1] * 2 + arr[i-2] * 3 + arr[i-3] * 2 + 2*arr[i-4]) % MOD + MOD) % MOD;
 
     }
 
