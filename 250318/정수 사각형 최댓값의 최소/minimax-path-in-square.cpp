@@ -4,8 +4,6 @@
 using namespace std;
 
 
-
-
 int main(){
     int n;
     cin >> n;
@@ -17,7 +15,7 @@ int main(){
             cin >> grid[i][j];
     }
 
-    dp[0][0] = 0;
+    dp[0][0] = grid[0][0];
 
     for (int i = 1; i < n; i++){
         dp[i][0] = max(dp[i-1][0], grid[i][0]);
@@ -30,7 +28,7 @@ int main(){
         }
     }
 
-    cout << min(dp[n-1][n-2], dp[n-2][n-1]);
+    cout << dp[n-1][n-1];
 
     return 0;
 }
