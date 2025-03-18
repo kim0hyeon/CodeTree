@@ -1,11 +1,13 @@
 #include <iostream>
 #include <algorithm>
+
 using namespace std;
 
-int n;
+
 
 
 int main(){
+    int n;
     cin >> n;
     int grid[n][n];
     int dp[n][n];
@@ -24,7 +26,7 @@ int main(){
 
     for (int i = 1; i < n; i++){
         for (int j = 1; j < n; j++){
-            dp[i][j] = min(max(dp[i-1][j], grid[i][j]), max(dp[i][j-1], grid[i][j]));
+            dp[i][j] = max(grid[i][j], min(dp[i-1][j], dp[i][j-1]));
         }
     }
 
