@@ -30,7 +30,7 @@ int main(){
         }
     }
 
-    cout << dp[n-1][n-1];
+    cout << min(dp[n-1][n-2], dp[n-2][n-1]);
 
     return 0;
 }
