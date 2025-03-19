@@ -8,12 +8,12 @@ int main(){
     int n;
     cin >> n;
 
-    vector<int> arr(n, 1);
+    vector<int> arr(n);
     vector<int> dp(n, 0);
 
     for (int i = 0; i < n; i++) cin >> arr[i];
 
-    dp[0] = arr[0];
+    dp[0] = 1;
 
     for (int i = 1; i < n; i++){
         for (int j = 0; j < i; j++){
