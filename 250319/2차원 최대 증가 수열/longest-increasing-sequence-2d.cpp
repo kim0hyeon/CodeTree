@@ -23,7 +23,9 @@ int main(){
             for (int i = 1; i <= x-1; i++){
                 for (int j = 1; j <= y-1; j++){
                     if (grid[x][y] > grid[i][j]){
-                        dp[x][y] = max(dp[x][y], dp[i][j]+1);
+                        if ((i == 1 && j == 1) || dp[i][j] != 1){
+                            dp[x][y] = max(dp[x][y], dp[i][j]+1);
+                        }
                     }
                 }
             }
@@ -41,3 +43,6 @@ int main(){
 
     return 0;
 }
+
+// 1,1에서 출발했음을 항시 기억
+// 1,1이 아닌 다른 지점에서의 출발은 하면 안됨
