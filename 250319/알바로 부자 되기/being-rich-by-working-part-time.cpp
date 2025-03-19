@@ -9,7 +9,7 @@ int main(){
     int n;
     cin >> n;
 
-    vector<pair<int, int>> vec;
+    vector<pair<int, int>> vec(n);
     vector<int> reward(n);
     vector<int> dp(n);
 
@@ -18,9 +18,9 @@ int main(){
         cin >> start >> end >> money;
 
         // 알바가 시작되는 날짜가 증가하는 순으로 데이터가 주어지므로 들어오는대로 저장한다.
-        vec.push_back(make_pair(start, end));
-        reward.push_back(money);
-        dp.push_back(money);  // 해당 인덱스에선 자기 자신은 반드시 깔고 간다고 생각해야한다.
+        vec[i] = make_pair(start, end);
+        reward[i] = money;
+        dp[i] = money;  // 해당 인덱스에선 자기 자신은 반드시 깔고 간다고 생각해야한다.
     }
 
     for (int i = 0; i < n; i++){
