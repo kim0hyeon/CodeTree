@@ -26,7 +26,7 @@ int main(){
         }
     }
 
-    cout << dp[m];
+    dp[m] == INT_MAX ? cout << -1 : cout << dp[m];
 
     return 0;
 }
