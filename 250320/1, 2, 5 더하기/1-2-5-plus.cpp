@@ -11,13 +11,13 @@ int main(){
 
     int arr[] = {1,2,5};
     vector<int> dp(n+1, 0);
+    dp[arr[0]] = 1; dp[arr[1]] = 1; dp[arr[2]] = 1;
 
     for (int i = 1; i <= n; i++){
         for (int num : arr){
             if (i-num > 0){
                 dp[i] += dp[i-num];
-            } else if (i - num == 0){
-                dp[i] += 1;
+                dp[i] %= 10007;
             }
         }
     }
