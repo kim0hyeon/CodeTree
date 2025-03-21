@@ -26,8 +26,10 @@ int main(){
         try{
             int num = stoi(input);
             for (auto &pair : umap){
-                if (pair.second == num)
+                if (pair.second == num){
                     cout << pair.first << endl;
+                    break;
+                }
             }
         } catch (const invalid_argument& e){
             cout << umap[input] << endl;
