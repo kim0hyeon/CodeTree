@@ -13,13 +13,16 @@ int main(){
     int num;
     for (int i = 0; i < n; i++){
         cin >> num;
-        umap[i] = num;
+        umap[num] += 1;
     }
 
+    // 이렇게 풀면 시간 초과. 시간 복잡도를 줄일 방법이 필요한데. 맵을 만들 때 작업이 필요할것같은데...
     int answer = 0;
-    for (int i = 0; i < n-1; i++){
-        for (int j = i+1; j < n; j++){
-            if (umap[i] + umap[j] == m) answer++;
+    for (auto &pair : umap){
+        if (umap.find(m-pair.first) != umap.end()){
+            answer += pair.second * umap[m-pair.first];
+            umap[pair.first] = 0;
+            umap[m-pair.first] = 0;
         }
     }
 
@@ -27,3 +30,4 @@ int main(){
 
     return 0;
 }
+
