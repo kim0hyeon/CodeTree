@@ -27,7 +27,7 @@ int main(){
                 s.erase(j);
                 break;
             }
-            if (j == 1){
+            if (j == 1 || j < s_min){
                 cout << answer;
                 return 0;
             }
