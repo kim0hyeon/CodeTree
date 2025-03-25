@@ -1,13 +1,11 @@
 #include <iostream>
 #include <set>
-#include <vector>
-#include <algorithm>
 
 using namespace std;
 
 
 int main(){
-    int k, n;
+    int n, k;
     cin >> n >> k;
 
     set<int> s;
@@ -17,11 +15,12 @@ int main(){
         s.insert(num);
     }
 
-    vector<int> answer(s.begin(), s.end());
-    sort(answer.begin(), answer.end(), greater<int>());
+    auto it = s.rbegin();
+    for (int i = 0; i < k; i++){
+        cout << *it << " ";
+        it--;
+    }
 
-    for (int i = 0; i < k; i++)
-        cout << answer[i] << " ";
 
     return 0;
 }
