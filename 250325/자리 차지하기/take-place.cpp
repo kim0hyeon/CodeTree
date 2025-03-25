@@ -3,7 +3,6 @@
 
 using namespace std;
 
-
 int main(){
     int n, m;
     cin >> n >> m;
@@ -12,29 +11,24 @@ int main(){
     for (int i = 1; i <= m; i++)
         s.insert(i);
 
-    int answer = 0, s_min = 1;
+    int answer = 0;
     for (int i = 0; i < n; i++){
         int num;
         cin >> num;
 
-        for (int j = num; j >= 1; j--){
-            if (s.find(j) != s.end()){
-                answer++;
-                if (j == s_min){
-                    auto it = s.find(j);
-                    s_min = *(it++);
-                }
-                s.erase(j);
-                break;
-            }
-            if (j == 1 || j < s_min){
-                cout << answer;
-                return 0;
-            }
+        // num보다 큰 첫 번째 원소를 찾는다.
+        auto it = s.upper_bound(num);
+        // num 이하의 원소가 없으면 종료
+        if(it == s.begin()){
+            cout << answer;
+            return 0;
         }
+        // it를 감소시켜 num 이하의 가장 큰 원소로 만든다.
+        --it;
+        answer++;
+        s.erase(it);
     }
 
     cout << answer;
-
     return 0;
 }
