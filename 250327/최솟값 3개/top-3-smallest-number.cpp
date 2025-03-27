@@ -24,8 +24,8 @@ int main(){
             int c = q.top();
             q.push(a);
             q.push(b);
-
-            cout << a * b * c << endl;
+            long long result = a * b * c;
+            cout << result << endl;
         } else{
             cout << -1 << endl;
             continue;
