@@ -17,11 +17,11 @@ int main(){
         if (q.size() == 4) q.pop();  // q에 원소가 4개가 된 경우 최대원소 1개를 뺀다.
 
         if (q.size() == 3){
-            int a = q.top();
+            long long a = q.top();
             q.pop();
-            int b = q.top();
+            long long b = q.top();
             q.pop();
-            int c = q.top();
+            long long c = q.top();
             q.push(a);
             q.push(b);
             long long result = a * b * c;
