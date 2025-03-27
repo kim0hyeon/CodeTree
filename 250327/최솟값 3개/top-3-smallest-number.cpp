@@ -12,22 +12,25 @@ int main(){
     for (int i = 0; i < n; i++){
         int a;
         cin >> a;
-        q.push(-a);
+        q.push(a);
 
-        if (q.size() >= 3){
+        if (q.size() == 4) q.pop();  // q에 원소가 4개가 된 경우 최대원소 1개를 뺀다.
+
+        if (q.size() == 3){
             int a = q.top();
             q.pop();
             int b = q.top();
             q.pop();
             int c = q.top();
-            
-            cout << -a * b * c << endl;
-
             q.push(a);
             q.push(b);
+
+            cout << a * b * c << endl;
         } else{
             cout << -1 << endl;
+            continue;
         }
+
     }
 
 
