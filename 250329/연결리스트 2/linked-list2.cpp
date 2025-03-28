@@ -11,15 +11,10 @@ struct Node {
 };
 
 void NodePop(Node *node){
-    if (node->prev != nullptr && node->next != nullptr){
+    if (node->prev != nullptr)
         node->prev->next = node->next;
+    if (node->next != nullptr)
         node->next->prev = node->prev;
-    } else if (node->prev != nullptr){
-        node->prev = nullptr;
-    } else if (node->next != nullptr){
-        node->next = nullptr;
-    }
-
     node->prev = nullptr;
     node->next = nullptr;
 }
