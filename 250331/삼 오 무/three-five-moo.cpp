@@ -19,15 +19,16 @@ int main(){
 
     int left = 1;
     int right = n*2;
+    int ans = 0;
 
     while (left <= right){
         int mid = (left + right) / 2;
         int count = mid - mid/3 - mid/5 + mid/15;
 
-        if (count == n){
+        if (count == n && (mid%3 > 0 && mid%5 > 0 && mid%15 > 0)){ // 이게 되더라도 mid가 3의 배수이거나, 5의 배수, 15의 배수인 경우는 제외해야한다. 그러면 어떻게?
             cout << mid;
             break;
-        } else if (count > n){
+        } else if (count >= n){
             right = mid-1;
         } else{
             left = mid+1;
