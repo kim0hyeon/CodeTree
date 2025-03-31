@@ -17,24 +17,19 @@ int main(){
     // 해당 숫자까지 숫자가 나타난 개수는 (해당숫자 - 해당숫자/3 - 해당숫자/5 + 해당숫자/15) 이렇게 구할 수 있다.
     // 이걸 이진탐색으로 구하면 될것같은데... left는 1로 한다고 하면 right의 초기값은 어떻게 설정해야하지?
 
-    int left = 1;
-    int right = n*2;
-    int ans = 0;
-
-    while (left <= right){
+    int left = 1, right = 2*n;
+    while (left < right) {
         int mid = (left + right) / 2;
         int count = mid - mid/3 - mid/5 + mid/15;
-
-        if (count == n && (mid%3 > 0 && mid%5 > 0 && mid%15 > 0)){ // 이게 되더라도 mid가 3의 배수이거나, 5의 배수, 15의 배수인 경우는 제외해야한다. 그러면 어떻게?
-            cout << mid;
-            break;
-        } else if (count >= n){
-            right = mid-1;
-        } else{
-            left = mid+1;
+        if (count >= n) {
+            right = mid;
+        } else {
+            left = mid + 1;
         }
-        
     }
+    // 여기서 left == right
+    // 최종적으로 left가 n번째 유효숫자를 가리키는지 확인
+    cout << left << endl;
 
 
     return 0;
