@@ -10,7 +10,7 @@ int main(){
     int ans = 0;
 
     if (n == 1 || n == 3){
-        cout << -1;
+        ans = -1;
     } else if ((n%5)%2 == 0){
         ans += n/5;
         n = n%5;
