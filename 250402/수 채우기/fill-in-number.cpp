@@ -11,7 +11,7 @@ int main(){
 
     if (n == 1 || n == 3){
         cout << -1;
-    } else if (n % 2 == 0){
+    } else if ((n%5)%2 == 0){
         ans += n/5;
         n = n%5;
         ans += n/2;
