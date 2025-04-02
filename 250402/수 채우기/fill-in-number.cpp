@@ -2,27 +2,23 @@
 
 using namespace std;
 
+
 int main(){
     int n;
     cin >> n;
-    
-    if (n == 1){
-        cout << -1;
-        return 0;
-    }
 
     int ans = 0;
-    ans += n/5;
-    n %= 5;
 
-    ans += n/2;
-    n %= 2;
-
-    while (n > 0) {
-        ans -= 1;
-        n += 5;
+    if (n == 1 || n == 3){
+        cout << -1;
+    } else if (n % 2 == 0){
+        ans += n/5;
+        n = n%5;
         ans += n/2;
-        n %= 2;
+    } else {
+        ans += n/5 - 1;
+        n = n%5 + 5;
+        ans += n/2;
     }
 
     cout << ans;
