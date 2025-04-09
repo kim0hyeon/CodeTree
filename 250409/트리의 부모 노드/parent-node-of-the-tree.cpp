@@ -31,6 +31,7 @@ int main(){
         int start, end;
         cin >> start >> end;
         graph[start].push_back(end);
+        graph[end].push_back(start);
     }
 
     DFS(1);
