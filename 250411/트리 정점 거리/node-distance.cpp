@@ -43,6 +43,7 @@ int main(){
 
         visited = vector<bool>(n+1, false);
 
+        visited[start] = true;
         DFS(start, end, count);
 
         cout << result << endl;
