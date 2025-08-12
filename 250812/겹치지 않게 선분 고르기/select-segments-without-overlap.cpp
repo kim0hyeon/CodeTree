@@ -14,8 +14,8 @@ vector<int> r;
 
 bool isPossible(int idx){
     for (int i = 0; i < lines.size(); i++){
-        int ori_left = l[i];
-        int ori_right = r[i];
+        int ori_left = l[lines[i]];
+        int ori_right = r[lines[i]];
         int new_left = l[idx];
         int new_right = r[idx];
 
