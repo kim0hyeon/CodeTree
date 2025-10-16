@@ -27,7 +27,7 @@ def check():
 
 
 def choose(row, col):
-    if (row == n - 1 and col == n - 1):
+    if (row == n):
         check()
         return
 
