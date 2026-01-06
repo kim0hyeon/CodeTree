@@ -19,7 +19,7 @@ for col in range(1, n):
         elif arr[col] >= 0:
             dp[row][col] = dp[row][col-1] + arr[col]
 
-ans = 0
+ans = -10**18
 
 for i in range(k+1):
     for j in range(n):
