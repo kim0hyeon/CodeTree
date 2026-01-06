@@ -7,7 +7,7 @@ dp = [[0] * (n) for _ in range(k+1)]
 
 # 초기값 설정
 # 첫 번째 원소가 양수일 때에만 0,0에 arr[0]의 값을 넣고, 음수라면 1,0부터 값을 넣는다.
-for i in range(k):
+for i in range(k+1):
     if i == 0 and arr[0] >= 0:
         dp[i][0] = arr[0]
     dp[i][0] = arr[0]
