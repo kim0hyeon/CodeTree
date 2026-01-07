@@ -30,4 +30,4 @@ BFS()
 if dp[n-1][n-1] == 101:
     print(-1)
 else:
-    print(dp[n-1][n-1])
+    print(dp[m-1][n-1])
