@@ -27,7 +27,7 @@ def BFS():
                     q.append((nx, ny))
 
 BFS()
-if dp[n-1][n-1] == 101:
+if dp[m-1][n-1] == 101:
     print(-1)
 else:
     print(dp[m-1][n-1])
