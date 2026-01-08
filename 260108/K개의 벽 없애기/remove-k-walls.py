@@ -44,35 +44,37 @@ def bfs():
         y = point[1]
         count = point[2]
 
+        if x == r2 and y == c2:
+            return count
+
         for i in range(4):
             nx = x + dx[i]
             ny = y + dy[i]
-
-            # 반복하는 도중 목적지에 도달한 경우 마지막 count에 +1 한 뒤 리턴
-            if nx == r2 and ny == c2:
-                return count + 1
 
             if nx >= 0 and nx < n and ny >= 0 and ny < n:
                 if grid[nx][ny] == 0 and not visited[nx][ny]:
                     visited[nx][ny] = True
                     q.append((nx, ny, count+1))
-    return -1 # 모두 반복해도 목적지에 도달하지 못한 경우 -1 리턴
 
-def printk(a):
-    for i in range(n):
-        for j in range(n):
-            print(grid[i][j], end=" ")
-        print()
-    print()
+    # 모두 반복해도 목적지에 도달하지 못한 경우 -1 리턴
+    return -1 
 
-ans = -1
+
+
+ans = 10**10
 for c in combinations(wall_point, k):
     initialize()
     for point in c:
         grid[point[0]][point[1]] = 0
     
-    ans = max(ans, bfs())
+    path = bfs()
+    if path != -1:
+        ans = min(ans, path)
 
     for point in c:
         grid[point[0]][point[1]] = 1
-print(ans)
+
+if ans == 10**10:
+    print(-1)
+else:
+    print(ans)
